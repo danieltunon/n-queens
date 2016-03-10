@@ -65,7 +65,7 @@ DecisionTree.prototype.createTree = function(n, depth, boardState) {
   if (depth + 1 === n) {
     for (var i = 0; i < n; i++) {
       board.togglePiece(i, depth);
-      if (!board.hasAnyRooksConflicts()) {
+      if (!board.hasAnyQueensConflicts()) {
         var node = new DecisionTree([i, depth]);
         this.children.push(node);
       }
@@ -74,7 +74,7 @@ DecisionTree.prototype.createTree = function(n, depth, boardState) {
   } else {
     for (var i = 0; i < n; i++) {
       board.togglePiece(i, depth);
-      if (!board.hasAnyRooksConflicts()) {
+      if (!board.hasAnyQueensConflicts()) {
         var node = new DecisionTree([i, depth]);
         var newState = JSON.parse(JSON.stringify(board.rows()));
         node.createTree(n, depth + 1, newState);
