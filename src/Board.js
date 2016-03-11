@@ -79,11 +79,11 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      var row = this.rows()[rowIndex];
+      var row = this.get('n');
       var count = 0;
 
-      for (var i = 0; i < this.rows()[rowIndex].length; i++) {
-        count += this.rows()[rowIndex][i];
+      for (var i = 0; i < row; i++) {
+        count += this.get(rowIndex)[i];
         if (count > 1) {
           return true;
         }
@@ -93,9 +93,9 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var rows = this.rows();
+      var rows = this.get('n');
 
-      for (var i = 0; i < rows.length; i++) {
+      for (var i = 0; i < rows; i++) {
         if (this.hasRowConflictAt(i)) {
           return true;
         }
@@ -110,10 +110,10 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      var rows = this.rows();
+      var rows = this.get('n');
       var count = 0;
-      for ( var i = 0; i < rows.length; i++ ) {
-        count += rows[i][colIndex];
+      for ( var i = 0; i < rows; i++ ) {
+        count += this.get(i)[colIndex];
         if ( count > 1 ) {
           return true;
         }
@@ -140,15 +140,15 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       // save rows in variable
-      var rows = this.rows();
+      var rows = this.get('n');
       // save parameter name
       var colIndex = majorDiagonalColumnIndexAtFirstRow;
       //declare counter = 0
       var counter = 0;
       // iterate through the rows
-      for ( var i = 0; i < rows.length; i++ ) {
+      for ( var i = 0; i < rows; i++ ) {
         // check for rows current column value
-        if (rows[i][colIndex]) {
+        if (this.get(i)[colIndex]) {
           // if defined, increment counter
           counter++;
         }
@@ -183,15 +183,15 @@
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       // save rows in variable
-      var rows = this.rows();
+      var rows = this.get('n');
       // save parameter name
       var colIndex = minorDiagonalColumnIndexAtFirstRow;
       //declare counter = 0
       var counter = 0;
       // iterate through the rows
-      for ( var i = 0; i < rows.length; i++ ) {
+      for ( var i = 0; i < rows; i++ ) {
         // check for rows current column value
-        if (rows[i][colIndex]) {
+        if (this.get(i)[colIndex]) {
           // if defined, increment counter
           counter++;
         }
